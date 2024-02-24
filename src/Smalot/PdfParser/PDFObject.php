@@ -571,17 +571,14 @@ class PDFObject
      * so whitespace is inserted in a logical way for reading by
      * humans.
      */
-    public function getText(?Page $page = null, $limiter = false): string
+    public function getText(?Page $page = null): string
     {
         $this->addPositionWhitespace = true;
         $result = $this->getTextArray($page);
-        $this->addPositionWhitespace = true;
+        $this->addPositionWhitespace = false;
         
-        if ($limiter) {
             return implode('|', $result) . ' ';
-        } else {
-            return implode('', $result) . ' ';
-        }
+ 
     }
 
     /**
